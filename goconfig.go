@@ -30,12 +30,12 @@ func SearchForConfigFile(filename string, folder string, searchLocally bool, sea
 		if err == nil {
 			fullPath := currentPath + filename
 			if _, err := os.Stat(fullPath); err == nil {
-				return foundFullPath, nil
+				return fullPath, nil
 			}
 			if len(folder) > 0 {
 				fullPath = currentPath + folder + "/" + filename
 				if _, err := os.Stat(fullPath); err == nil {
-					return foundFullPath, nil
+					return fullPath, nil
 				}
 			}
 		}
@@ -48,12 +48,12 @@ func SearchForConfigFile(filename string, folder string, searchLocally bool, sea
 		if err == nil {
 			fullPath := usrHome + filename
 			if _, err := os.Stat(fullPath); err == nil {
-				return foundFullPath, nil
+				return fullPath, nil
 			}
 			if len(folder) > 0 {
 				fullPath = usrHome + folder + "/" + filename
 				if _, err := os.Stat(fullPath); err == nil {
-					return foundFullPath, nil
+					return fullPath, nil
 				}
 			}
 		}
@@ -63,12 +63,12 @@ func SearchForConfigFile(filename string, folder string, searchLocally bool, sea
 		// Checking in /etc
 		fullPath := etcFolder + filename
 		if _, err := os.Stat(fullPath); err == nil {
-			return foundFullPath, nil
+			return fullPath, nil
 		}
 		if len(folder) > 0 {
 			fullPath = etcFolder + folder + "/" + filename
 			if _, err := os.Stat(fullPath); err == nil {
-				return foundFullPath, nil
+				return fullPath, nil
 			}
 		}
 	}
